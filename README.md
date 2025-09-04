@@ -54,7 +54,6 @@ This project is built with:
 
 You can deploy this project using your preferred hosting service (e.g., Vercel, Netlify, GitHub Pages, etc.).
 
-## Can I connect a custom domain to my Lovable project?
 
 ## Can I connect a custom domain?
 
