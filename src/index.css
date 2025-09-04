@@ -1,0 +1,296 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Luxury Neon Brand Design System */
+
+@layer base {
+  :root {
+    /* Luxury Color Palette */
+    --background: 20 14% 4%;
+    --foreground: 45 100% 85%;
+    
+    --card: 20 14% 6%;
+    --card-foreground: 45 100% 85%;
+    
+    --popover: 20 14% 8%;
+    --popover-foreground: 45 100% 85%;
+    
+    /* Neon Gold Brand Colors */
+    --primary: 45 100% 70%;
+    --primary-foreground: 20 14% 4%;
+    
+    --secondary: 20 14% 12%;
+    --secondary-foreground: 45 100% 85%;
+    
+    --muted: 20 14% 10%;
+    --muted-foreground: 45 20% 65%;
+    
+    --accent: 45 100% 60%;
+    --accent-foreground: 20 14% 4%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 45 100% 95%;
+    
+    --border: 20 14% 15%;
+    --input: 20 14% 8%;
+    --ring: 45 100% 70%;
+    
+    /* Luxury Gradients */
+    --gradient-luxury: linear-gradient(135deg, hsl(45 100% 70%), hsl(45 100% 55%));
+    --gradient-dark: linear-gradient(180deg, hsl(20 14% 4%), hsl(20 14% 8%));
+    --gradient-gold-glow: radial-gradient(circle at center, hsl(45 100% 70% / 0.3), transparent 70%);
+    
+    /* Shadows */
+    --shadow-luxury: 0 25px 50px -12px hsl(45 100% 70% / 0.25);
+    --shadow-dark: 0 10px 30px -5px hsl(20 14% 0% / 0.5);
+    
+    /* Animation Variables */
+    --transition-luxury: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .light {
+    /* Light mode inherits luxury colors for consistency */
+    --background: 20 14% 4%;
+    --foreground: 45 100% 85%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body overflow-x-hidden;
+    background: var(--gradient-dark);
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+
+@layer components {
+  /* Luxury Button Variants */
+  .btn-luxury {
+    @apply bg-gradient-to-r from-primary to-accent text-primary-foreground 
+           font-semibold px-8 py-3 rounded-lg transition-all duration-300 
+           hover:shadow-luxury hover:scale-105 active:scale-95;
+  }
+  
+  .btn-outline-luxury {
+    @apply border-2 border-primary text-primary bg-transparent 
+           font-medium px-6 py-2 rounded-lg transition-all duration-300
+           hover:bg-primary hover:text-primary-foreground hover:shadow-luxury;
+  }
+  
+  /* Premium Card Styles */
+  .card-luxury {
+    @apply bg-card/50 backdrop-blur-sm border border-border/20 
+           rounded-xl p-6 shadow-dark transition-all duration-300
+           hover:shadow-luxury hover:border-primary/30;
+  }
+  
+  /* Gold Glow Effect */
+  .gold-glow {
+    position: relative;
+  }
+  
+  .gold-glow::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: var(--gradient-gold-glow);
+    border-radius: inherit;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .gold-glow:hover::before {
+    opacity: 1;
+  }
+  
+  /* Smooth Animations */
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.8s ease-out;
+  }
+  
+  .animate-scale-in {
+    animation: scaleIn 0.5s ease-out;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ElevenLabs Voice Assistant Luxury Styling */
+@layer components {
+  /* Widget positioning */
+  elevenlabs-convai {
+    position: fixed !important;
+    bottom: 24px !important;
+    right: 24px !important;
+    z-index: 9999 !important;
+  }
+  
+  /* Main button styling with luxury theme */
+  elevenlabs-convai [data-testid="trigger-button"],
+  elevenlabs-convai button[role="button"] {
+    background: linear-gradient(135deg, hsl(45 100% 70%), hsl(45 100% 55%)) !important;
+    border: 2px solid hsl(45 100% 70%) !important;
+    border-radius: 50% !important;
+    width: 64px !important;
+    height: 64px !important;
+    box-shadow: 0 25px 50px -12px hsl(45 100% 70% / 0.25), 
+                0 0 0 1px hsl(45 100% 70% / 0.05) !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    position: relative !important;
+  }
+  
+  elevenlabs-convai [data-testid="trigger-button"]:hover,
+  elevenlabs-convai button[role="button"]:hover {
+    transform: scale(1.15) !important;
+    box-shadow: 0 0 40px hsl(45 100% 70% / 0.6), 
+                0 25px 50px -12px hsl(45 100% 70% / 0.4) !important;
+    border-color: hsl(45 100% 80%) !important;
+  }
+  
+  /* Add glow effect */
+  elevenlabs-convai [data-testid="trigger-button"]::before,
+  elevenlabs-convai button[role="button"]::before {
+    content: '' !important;
+    position: absolute !important;
+    inset: -4px !important;
+    background: radial-gradient(circle, hsl(45 100% 70% / 0.3), transparent 70%) !important;
+    border-radius: 50% !important;
+    z-index: -1 !important;
+    opacity: 0 !important;
+    transition: opacity 0.3s ease !important;
+  }
+  
+  elevenlabs-convai [data-testid="trigger-button"]:hover::before,
+  elevenlabs-convai button[role="button"]:hover::before {
+    opacity: 1 !important;
+  }
+  
+  /* Chat panel styling */
+  elevenlabs-convai [data-testid="chat-panel"],
+  elevenlabs-convai [role="dialog"] {
+    background: hsl(20 14% 6% / 0.95) !important;
+    backdrop-filter: blur(20px) !important;
+    border: 1px solid hsl(45 100% 70% / 0.2) !important;
+    border-radius: 20px !important;
+    box-shadow: 0 25px 50px -12px hsl(20 14% 0% / 0.5),
+                0 0 0 1px hsl(45 100% 70% / 0.1) !important;
+    font-family: 'Inter', sans-serif !important;
+  }
+  
+  /* Chat header */
+  elevenlabs-convai [data-testid="chat-header"] {
+    background: linear-gradient(135deg, hsl(45 100% 70%), hsl(45 100% 55%)) !important;
+    color: hsl(20 14% 4%) !important;
+    font-family: 'Playfair Display', serif !important;
+    font-weight: 600 !important;
+    padding: 16px 20px !important;
+    border-radius: 20px 20px 0 0 !important;
+  }
+  
+  /* Messages area */
+  elevenlabs-convai [data-testid="messages-container"] {
+    background: hsl(20 14% 4%) !important;
+    color: hsl(45 100% 85%) !important;
+    padding: 16px !important;
+  }
+  
+  /* Individual messages */
+  elevenlabs-convai [data-role="user-message"] {
+    background: hsl(45 100% 70% / 0.15) !important;
+    color: hsl(45 100% 85%) !important;
+    border: 1px solid hsl(45 100% 70% / 0.3) !important;
+    border-radius: 16px 16px 4px 16px !important;
+    padding: 12px 16px !important;
+    margin: 8px 0 !important;
+  }
+  
+  elevenlabs-convai [data-role="assistant-message"] {
+    background: hsl(20 14% 12%) !important;
+    color: hsl(45 100% 85%) !important;
+    border: 1px solid hsl(20 14% 20%) !important;
+    border-radius: 16px 16px 16px 4px !important;
+    padding: 12px 16px !important;
+    margin: 8px 0 !important;
+  }
+  
+  /* Input area */
+  elevenlabs-convai [data-testid="input-area"] {
+    background: hsl(20 14% 8%) !important;
+    border-top: 1px solid hsl(45 100% 70% / 0.2) !important;
+    padding: 16px !important;
+  }
+  
+  /* Status indicators */
+  elevenlabs-convai [data-testid="status-indicator"] {
+    color: hsl(45 100% 70%) !important;
+  }
+  
+  /* Scrollbar styling */
+  elevenlabs-convai * {
+    scrollbar-width: thin !important;
+    scrollbar-color: hsl(45 100% 70% / 0.3) hsl(20 14% 8%) !important;
+  }
+  
+  elevenlabs-convai *::-webkit-scrollbar {
+    width: 6px !important;
+  }
+  
+  elevenlabs-convai *::-webkit-scrollbar-track {
+    background: hsl(20 14% 8%) !important;
+  }
+  
+  elevenlabs-convai *::-webkit-scrollbar-thumb {
+    background: hsl(45 100% 70% / 0.3) !important;
+    border-radius: 3px !important;
+  }
+  
+  elevenlabs-convai *::-webkit-scrollbar-thumb:hover {
+    background: hsl(45 100% 70% / 0.5) !important;
+  }
+}
