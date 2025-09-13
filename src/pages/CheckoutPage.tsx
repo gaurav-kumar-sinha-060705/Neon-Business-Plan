@@ -129,61 +129,12 @@ export const CheckoutPage = () => {
     }
 
     setIsSubmitting(true);
-    try {
-      // Create flat payload structure as requested
-      const payload = {
-        order_id: orderId,
-        customer_name: form.customer_name,
-        email: form.customer_email,
-        phone: form.customer_phone,
-        address_line: form.address,
-        city: form.city,
-        state: form.state,
-        country: form.country,
-        pincode: form.pincode,
-        payment_method: form.payment_method,
-        order_notes: form.notes,
-        currency: "INR",
-        order_status: "order placed",
-        All_Item_names: items.map(item => item.name).join(", "),
-        total_quantity: items.reduce((sum, item) => sum + item.quantity, 0),
-        subtotal: subtotal,
-        tax: tax,
-        shipping: deliveryCharge,
-        discount: 0,
-        grand_total: total,
-        delivery_charge: deliveryCharge,
-        delivery_location: form.city || form.pincode || "",
-        timestamp: new Date().toISOString(),
-        source: "NEON - Luxury E-Commerce"
-      };
-
-      const response = await fetch(
-        "https://gauravone.app.n8n.cloud/webhook/2b92c76d-5105-4d4e-a469-99674b6a5e98",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json",
-          },
-          body: JSON.stringify(payload),
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      console.log("Order submitted successfully");
-
+    // Simulate order placement locally (no external POST)
+    setTimeout(() => {
       setIsSuccess(true);
       clearCart();
-    } catch (err) {
-      console.error("Checkout error", err);
-      alert("Failed to place order. Please try again.");
-    } finally {
       setIsSubmitting(false);
-    }
+    }, 1000); // Simulate a short delay for UX
   };
 
   if (isSuccess) {
